@@ -25,9 +25,11 @@ async def on_message(message: discord.Message):
 		_msg = message.content.split()  # ça permet de découper le message là où il y a des espaces
 		if _msg[0] == '!timer':
 			# donc le message commence par !timer suivi d'une espace
+
+
 			await cmd_timer(message)
-
-
+			if t > 120:
+				await bot_message.channel.send("impossible! (!help)")
 async def cmd_timer(bot_message):
 	# on va essayer de voir si il y a des arguments ajoutés (temps) car sinon, la commande ne doit pas fonctionner
 	_msg = bot_message.content.split()
@@ -40,6 +42,7 @@ async def cmd_timer(bot_message):
 			time.sleep(1)
 			t -= 1
 		await bot_message.channel.send("Time's up!")
+
 	else:
 		# donc l'utilisateur n'a pas mis d'arguments
 		await bot_message.channel.send("Aw, t'as pas mis d'arguments a winnat !")
