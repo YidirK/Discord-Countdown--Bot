@@ -1,7 +1,7 @@
 
 import discord
 
-__token = "NzAzMDM2NTI1NzU0OTc0MjU5.XqIvyQ.kyxA3Bmi9mNSE9Tx3ir0vG3NlYE"
+__token = "NzAzMDM2NTI1NzU0OTc0MjU5.XqIvyQ.9c9spCX2AvDOMgoTpDJd03iwe-g"
 __client = discord.Client()
 
 @__client.event
