@@ -1,5 +1,6 @@
-
 import time
+
+
 def countdown(t):
     while t:
         mins, secs = divmod(t, 60)
@@ -7,12 +8,13 @@ def countdown(t):
         print(timer, end="\r")
         time.sleep(1)
         t -= 1
-
-    print('aya ḥves!!!')
-
-t = input("Enter the time in seconds:  ")
-
-if t >= 120: print("impossible")
+    print('Time is up!')
 
 
-countdown(int(t)) 
+def test():
+    t = int(input("Enter the time in seconds: "))  # todo: error handling
+    countdown(int(t))
+
+
+if __name__ == "__main__":
+    test()
