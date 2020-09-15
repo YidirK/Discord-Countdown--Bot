@@ -4,6 +4,7 @@ with open("config.json") as _j:
 	__token = json.loads(_j.read())["token"]
 
 __client = discord.Client()
+__timer_max = 120
 
 
 @__client.event
@@ -25,10 +26,9 @@ async def on_message(message: discord.Message):
 		_msg = message.content.split()  # ça permet de découper le message là où il y a des espaces
 		if _msg[0] == '!timer':
 			# donc le message commence par !timer suivi d'une espace
-
-
 			await cmd_timer(message)
 
+			
 async def cmd_timer(bot_message):
 	# on va essayer de voir si il y a des arguments ajoutés (temps) car sinon, la commande ne doit pas fonctionner
 	_msg = bot_message.content.split()
@@ -37,13 +37,13 @@ async def cmd_timer(bot_message):
 		# on sait désormais que l'utilisateur veut utiliser !timer avec les arguments listés dans _args
 		await bot_message.channel.send("Tu veux !timer avec les arguments %s" % _args)
 		t = int(_args[0])
-		if t > 120:
+		if t > __timer_max:
 			await bot_message.channel.send("impossible! (!help)")
-		while t:
-			time.sleep(1)
-			t -= 1
-		await bot_message.channel.send("Time's up!")
-
+		else:
+			while t:
+				time.sleep(1)
+				t -= 1
+			await bot_message.channel.send("Time's up!")
 	else:
 		# donc l'utilisateur n'a pas mis d'arguments
 		await bot_message.channel.send("Aw, t'as pas mis d'arguments a winnat !")
