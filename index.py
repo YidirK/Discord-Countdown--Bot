@@ -28,8 +28,7 @@ async def on_message(message: discord.Message):
 
 
 			await cmd_timer(message)
-			if t > 120:
-				await bot_message.channel.send("impossible! (!help)")
+
 async def cmd_timer(bot_message):
 	# on va essayer de voir si il y a des arguments ajoutés (temps) car sinon, la commande ne doit pas fonctionner
 	_msg = bot_message.content.split()
@@ -38,6 +37,8 @@ async def cmd_timer(bot_message):
 		# on sait désormais que l'utilisateur veut utiliser !timer avec les arguments listés dans _args
 		await bot_message.channel.send("Tu veux !timer avec les arguments %s" % _args)
 		t = int(_args[0])
+		if t > 120:
+			await bot_message.channel.send("impossible! (!help)")
 		while t:
 			time.sleep(1)
 			t -= 1
