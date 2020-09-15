@@ -8,22 +8,6 @@ __client = discord.Client()
 async def on_ready():
     print('Logged on as {0.user}!'.format(__client))
 
-    @__client.event
-    async def on_member_join(member):
-        for channel in member.guild.channels:
-            if str(channel) == "timer":  # We check to make sure we are sending the message in the general channel
-                await channel.send_message(f"""Welcome to the server this is test {member.mention}""")
-
-                @__client.event
-                async def on_message(message: discord.Message):
-                    if message.content == "!help":
-                        embed = discord.Embed(title="Help of BOT", description="commands of bot")
-                        embed.add_field(name="!timer <n>M", value="Start a countdown with length 'n'M")
-                        embed.add_field(name="!stop", value="stop a contdown")
-                        await message.channel.send(content=None, embed=embed)
-
-
-
 @__client.event
 async def on_message(message: discord.Message):
     if message.author == __client.user:
@@ -38,21 +22,39 @@ async def on_message(message: discord.Message):
         _msg = message.content.split()  # ça permet de découper le message là où il y a des espaces
         if _msg[0] == '!timer':
             # donc le message commence par !timer suivi d'une espace
-              await  cmd_timer(message)
+            await cmd_timer(message)
 
 
 
 async def cmd_timer(bot_message):
-    _msg = bot_message.content.split()
     # on va essayer de voir si il y a des arguments ajoutés (temps) car sinon, la commande ne doit pas fonctionner
+    _msg = bot_message.content.split()
     if len(_msg) > 1:
         _args = _msg[1:]  # on recueille une liste des arguments ajoutés
         # on sait désormais que l'utilisateur veut utiliser !timer avec les arguments listés dans _args
         await bot_message.channel.send("Tu veux !timer avec les arguments %s" % _args)
     else:
         # donc l'utilisateur n'a pas mis d'arguments
-        await bot_message.channel.send("Aw, t'as pas mis d'arguments a winnat! \"!help\" for a list.")
+        await bot_message.channel.send("Aw, t'as pas mis d'arguments a winnat !")
+        # voila le scripte pour le timer
+        import time
+        def countdown(t):
+            while t:
+                mins, secs = divmod(t, 60)
+                timer = '{:02d}:{:02d}'.format(mins, secs)
+                print(timer, end="\r")
+                time.sleep(1)
+                t -= 1
+
+            print('aya ḥves!!!')
+        await bot_message.channel.send("dayen ikefa")
+
+        t = int(_args[0])
+
+        if t >= 120: print("impossible")
+
+
+
+        countdown(int(t))
 
 __client.run(__token)
-
-
