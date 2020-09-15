@@ -1,5 +1,7 @@
+import discord, json, time
 
-import discord
+with open("config.json") as _j:
+	__token = json.loads(_j.read())["token"]
 
 __token = "NzAzMDM2NTI1NzU0OTc0MjU5.XqIvyQ.9c9spCX2AvDOMgoTpDJd03iwe-g"
 __client = discord.Client()
