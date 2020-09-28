@@ -2,7 +2,7 @@
 import discord, json, time
 
 
-with open("config.json") as _j:
+with open("config.json.example") as _j:
 	__token = json.loads(_j.read())["token"]
 
 __client = discord.Client()
