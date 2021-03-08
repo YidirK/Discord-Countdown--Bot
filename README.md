@@ -23,6 +23,7 @@ Copy or Rename `config.json.example` to `config.json` and fill out the values:
 [@DarthJahus](https://github.com/DarthJahus)
 [@yidirm](https://github.com/yidirm)
 ## 📍Donate
-> For **Jahus***:'https://patreon.com/jahus'
-> For **Yidir***:''
+* For **Jahus***:'https://patreon.com/jahus'
+ 
+* For **Yidir***:''
 
