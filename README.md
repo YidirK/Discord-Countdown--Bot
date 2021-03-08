@@ -1,4 +1,4 @@
-# Discord_countdown_bot
+# Discord countdown bot
  🤖 DebateWeb Bot (Discord countdown bot)
 > DebateWeb is a Discord countdown bot built with discord.py .
 ## 🦾Requirements
